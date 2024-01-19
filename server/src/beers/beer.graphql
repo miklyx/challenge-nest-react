@@ -1,0 +1,11 @@
+type Beer {
+  id: Int!
+  name: String
+  description: String
+  price: Int
+}
+
+type Query {
+  beer(id:Int!) : Beer
+  beers: [Beer]
+}
