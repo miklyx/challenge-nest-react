@@ -10,3 +10,7 @@ export interface Beer {
   position: number;
   price: string;
 }
+
+export interface RandNumData {
+  data: number;
+}

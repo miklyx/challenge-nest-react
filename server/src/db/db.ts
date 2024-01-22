@@ -12,7 +12,8 @@ export async function getAllBeers() {
     await client.connect()
     const database = client.db('mbot_base');
     const tapsCollection = database.collection('taps_prepared');
-    const taps = await tapsCollection.find({}).toArray();
+    const projection = { _id: 0, img_id: 0 };
+    const taps = await tapsCollection.find({}, {projection}).toArray();
     return taps;
   } finally {
     await client.close();

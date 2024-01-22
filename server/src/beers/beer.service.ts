@@ -14,7 +14,10 @@ export class BeerService {
     const beers = getAllBeers()
     return beers
   }
-
+  getRandomNumericData(): any {
+    const num = Math.floor(Math.random() * 100)
+    return {data: num}
+  }
   /* getBeer(id:number) : Beer {
     return this.beers.find(b => b.id = id);
   } */
