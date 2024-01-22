@@ -8,10 +8,10 @@ export class BeerResolver {
     private beerService: BeerService
   ) {}
 
-  @Query()
+  /* @Query()
   beer(@Args('id') id: number){
     return this.beerService.getBeer(id)
-  }
+  } */
 
 
   @Query()
