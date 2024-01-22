@@ -2,7 +2,7 @@ import { MongoClient } from 'mongodb';
 
 import {config} from 'dotenv';
 
-config({path:'../.env'});
+config({path: '../.env'});
 
 const uri:string = process.env.MONGO_CONNECTION_STRING
 const client: MongoClient = new MongoClient(uri);
