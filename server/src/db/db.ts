@@ -5,7 +5,6 @@ import {config} from 'dotenv';
 config({path:'../.env'});
 
 const uri:string = process.env.MONGO_CONNECTION_STRING
-//const uri: string = "mongodb+srv://polyteia:polyteia@mbottest.z04wi.gcp.mongodb.net/?retryWrites=true&w=majority"
 const client: MongoClient = new MongoClient(uri);
 
 export async function getAllBeers() {
