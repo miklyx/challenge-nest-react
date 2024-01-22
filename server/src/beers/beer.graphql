@@ -1,11 +1,21 @@
 type Beer {
   id: Int!
+  tap_number: String
   name: String
-  description: String
-  price: Int
+  style: String
+  brewery: String
+  abv: String
+  ibu: String
+  label_image_hd: String
+  position: Int
+  price: String
+}
+
+type RandNumData {
+  data: Int
 }
 
 type Query {
-  beer(id:Int!) : Beer
+  randomNumericData: RandNumData
   beers: [Beer]
 }
