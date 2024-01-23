@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useQuery, gql } from "@apollo/client";
-import { Bar } from "@nivo/bar";
-import { constants } from "buffer";
+import { Pie } from "@nivo/pie";
 
 const BeersQuery = gql`
   query BeersQuery {
@@ -14,7 +13,7 @@ const BeersQuery = gql`
     }
   }`;
 
-export const BarChart = () => {
+export const PieChart = () => {
     
   const { loading, error, data } = useQuery(BeersQuery);
   if (loading) return <p>Loading...</p>;
@@ -30,32 +29,17 @@ export const BarChart = () => {
       });
     }
     const chart = (
-      <Bar 
+      <Pie 
         data={mergedData}
-        keys={["data"]}
-        indexBy="name"
-        groupMode="stacked"
-        layout="horizontal"
-        reverse={true}
-        margin={{ top: 50, right: 130, bottom: 50, left: 180 }}
-        padding={0.4}
-        width={600}
-        height={500}
-        valueScale={{ type: "linear" }}
+        id="name"
+        value="data"
+        margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
+        width={800}
+        height={800}
+        startAngle={25}
+        endAngle={285}
         colors={{scheme: 'nivo'}}
-        colorBy="indexValue"
         animate={true}
-        enableLabel={false}
-        axisTop={null}
-        axisRight={{
-          tickSize: 5,
-          tickPadding: 5,
-          tickRotation: 0,
-          legend: "",
-          legendPosition: "middle",
-          legendOffset: -40
-        }}
-        axisLeft={null}
       /> 
     )
     return (

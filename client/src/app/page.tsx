@@ -3,8 +3,8 @@
 import styles from "./page.module.css";
 import { ApolloProvider } from '@apollo/client';
 import client from './apolloClient'; 
-import { Beer } from './beer';
 import { BarChart } from "./BarComponent";
+import { PieChart } from "./PieComponent";
 
 
 export default function Home() {
@@ -19,11 +19,13 @@ export default function Home() {
           <div>
             <BarChart />
           </div>
-
+          
         </div>
 
         <div className={styles.grid}>
-        <p>Copyright</p>
+          <div>
+            <PieChart />
+          </div>
         </div>
       </main>
     </ApolloProvider>
