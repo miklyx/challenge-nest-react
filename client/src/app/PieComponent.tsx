@@ -34,11 +34,13 @@ export const PieChart = () => {
         id="name"
         value="data"
         margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
-        width={800}
-        height={800}
-        startAngle={25}
-        endAngle={285}
-        colors={{scheme: 'nivo'}}
+        width={1000}
+        height={450}
+        startAngle={35}
+        endAngle={325}
+        innerRadius={0.2}
+        activeOuterRadiusOffset={18}
+        colors={{scheme: 'category10'}}
         animate={true}
       /> 
     )

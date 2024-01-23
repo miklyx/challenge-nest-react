@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useQuery, gql } from "@apollo/client";
 import { Bar } from "@nivo/bar";
-import { constants } from "buffer";
 
 const BeersQuery = gql`
   query BeersQuery {
@@ -28,21 +27,21 @@ export const BarChart = () => {
         ...beers[i],
         ...randData[i],
       });
-    }
+    } 
     const chart = (
       <Bar 
         data={mergedData}
         keys={["data"]}
         indexBy="name"
-        groupMode="stacked"
+        groupMode="grouped"
         layout="horizontal"
         reverse={true}
-        margin={{ top: 50, right: 130, bottom: 50, left: 180 }}
+        margin={{ top: 50, right: 270, bottom: 50, left: 180 }}
         padding={0.4}
-        width={600}
-        height={500}
+        width={1000}
+        height={450}
         valueScale={{ type: "linear" }}
-        colors={{scheme: 'nivo'}}
+        colors={{scheme: 'category10'}}
         colorBy="indexValue"
         animate={true}
         enableLabel={false}
@@ -63,9 +62,9 @@ export const BarChart = () => {
         <h1>Beer chart</h1>
         {chart}
       </div>
-    );
-  } else {
-    return <div>No Beers</div>;
-  }
+    );} else {
+      return <p>no beers</p>
+    }
   
   }
+  

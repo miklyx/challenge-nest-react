@@ -5,6 +5,7 @@ import { ApolloProvider } from '@apollo/client';
 import client from './apolloClient'; 
 import { BarChart } from "./BarComponent";
 import { PieChart } from "./PieComponent";
+import { ToggleButton } from "./ToggleButton";
 
 
 export default function Home() {
@@ -17,15 +18,12 @@ export default function Home() {
 
         <div className={styles.center}>
           <div>
-            <BarChart />
+            <ToggleButton />
           </div>
           
         </div>
 
         <div className={styles.grid}>
-          <div>
-            <PieChart />
-          </div>
         </div>
       </main>
     </ApolloProvider>
