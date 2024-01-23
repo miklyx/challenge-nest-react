@@ -13,7 +13,6 @@ const AbvQuery = gql`
   }
   `;
 
-
 export const BarChart = () => {
     
   const { loading, error, data } = useQuery(AbvQuery);
