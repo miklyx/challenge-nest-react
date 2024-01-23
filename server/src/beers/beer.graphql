@@ -16,6 +16,6 @@ type RandNumData {
 }
 
 type Query {
-  randomNumericData: RandNumData
+  randomNumericData: [RandNumData]
   beers: [Beer]
 }

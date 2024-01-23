@@ -1,0 +1,39 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  min-height: 100vh;
+  border: 1px solid rgba(var(--callout-border-rgb), 0.3);
+  border-radius: var(--border-radius);
+}
+
+.button {
+  position: relative;
+  padding: 1rem;
+  color: black;
+  margin-left: 10rem;
+  background-color: rgba(var(--callout-rgb), 0.5);
+  border: 1px solid rgba(var(--callout-border-rgb), 0.3);
+  border-radius: var(--border-radius);
+}
+
+.upperBar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.switch {
+  display: flex;
+  flex-direction: row;
+  color: black;
+  font-size: small;
+  justify-content: flex-end;
+  align-items: center;
+  position: relative;
+  margin-right: 10rem;
+  padding: 1rem;
+}

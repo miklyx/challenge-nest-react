@@ -1,15 +1,14 @@
 import { MongoClient } from 'mongodb';
-
 import {config} from 'dotenv';
 
-config({path:'../.env'});
+config({path: '../.env'});
 
-const uri:string = process.env.MONGO_CONNECTION_STRING
+const uri:string = process.env.MONGO_CONNECTION_STRING;
 const client: MongoClient = new MongoClient(uri);
 
-export async function getAllBeers() {
+export async function getAllBeers(): Promise<any> {
   try {
-    await client.connect()
+    await client.connect();
     const database = client.db('mbot_base');
     const tapsCollection = database.collection('taps_prepared');
     const projection = { _id: 0, img_id: 0 };
@@ -18,4 +17,4 @@ export async function getAllBeers() {
   } finally {
     await client.close();
   }
-}
+};
