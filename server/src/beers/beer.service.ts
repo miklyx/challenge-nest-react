@@ -5,11 +5,11 @@ import { getRandomNumericData } from 'src/db/randomNumData';
 @Injectable()
 export class BeerService {
 
-  getAllBeers(): any {
+  getAllBeers():any {
     const beers = getAllBeers()
     return beers
   }
-  getRandomNumericData(): any {
+  getRandomNumericData(): number[] {
     const randomNumericData = getRandomNumericData()
     return randomNumericData.data
   }

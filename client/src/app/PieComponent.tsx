@@ -1,15 +1,16 @@
-import React from "react";
-import { useQuery } from "@apollo/client";
-import { Pie } from "@nivo/pie";
-import { BeersQuery, mergeData } from "./dataService";
+import React from 'react';
+import { useQuery } from '@apollo/client';
+import { Pie } from '@nivo/pie';
+import { BeersQuery, mergeData } from './dataService';
+import { MergedData } from './types';
 
-export const PieChart = () => {
+export const PieChart: React.FC = () => {
     
   const { loading, error, data } = useQuery(BeersQuery);
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
   if (data) {
-    const mergedData = mergeData(data);
+    const mergedData:MergedData[] = mergeData(data);
     const chart = (
       <Pie 
         data={mergedData}
@@ -22,7 +23,7 @@ export const PieChart = () => {
         endAngle={325}
         innerRadius={0.2}
         activeOuterRadiusOffset={18}
-        colors={{scheme: 'category10'}}
+        colors={{scheme: 'set3'}}
         animate={true}
       /> 
     )

@@ -1,14 +1,15 @@
-import React from "react";
-import { useQuery } from "@apollo/client";
-import { Bar } from "@nivo/bar";
-import { BeersQuery, mergeData } from "./dataService";
+import React from 'react';
+import { useQuery } from '@apollo/client';
+import { Bar } from '@nivo/bar';
+import { BeersQuery, mergeData } from './dataService';
+import { MergedData } from './types';
 
-export const BarChart = () => {
+export const BarChart: React.FC = () => {
   const { loading, error, data } = useQuery(BeersQuery);
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
   if (data) {
-    const mergedData = mergeData(data);
+    const mergedData:MergedData[] = mergeData(data);
     const chart = (
       <Bar 
         data={mergedData}
@@ -22,7 +23,7 @@ export const BarChart = () => {
         width={1000}
         height={450}
         valueScale={{ type: "linear" }}
-        colors={{scheme: 'category10'}}
+        colors={{scheme: 'set3'}}
         colorBy="indexValue"
         animate={true}
         enableLabel={false}
@@ -42,7 +43,7 @@ export const BarChart = () => {
       <div>
         {chart}
       </div>
-    );} else {
+    )} else {
       return <p>No beers</p>
     }
   }

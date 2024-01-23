@@ -1,43 +1,32 @@
-import { useState } from "react";
-import { useQuery, gql } from "@apollo/client";
-import { BarChart } from "./BarComponent";
-import { PieChart } from "./PieComponent";
-import { Switch } from "@mui/material";
-import styles from "./page.module.css"
+import { useState } from 'react';
+import { useQuery } from '@apollo/client';
+import { BarChart } from './BarComponent';
+import { PieChart } from './PieComponent';
+import { Switch } from '@mui/material';
+import styles from './page.module.css'
+import { BeersQuery } from './dataService';
+import { MergedData } from './types';
 
-const BeersQuery = gql`
-  query BeersQuery {
-    randomNumericData {
-      data
-    }
-    beers {
-      name
-      price
-    }
-  }`;
-
-export const ToggleButton = () => {
-  const [isLeft, setPosition] = useState(true)
-  const { loading, error, data, refetch } = useQuery(BeersQuery);
-  const [dataBatch, setDataBatch] = useState([])
+export const ToggleButton: React.FC = () => {
+  const [isLeft, setPosition] = useState<boolean>(true);
+  const { loading, error, data, refetch } = useQuery<{data:MergedData}>(BeersQuery);
 
   const handleChange = () => {
-    setPosition(!isLeft)
+    setPosition(!isLeft);
   }
   const handleFetchData = () => {
-    refetch()
-    
+    refetch();
   };
 
   return (
     <div>
-      <div className={styles.description}>
-        <button onClick={handleFetchData}>
+      <div className={styles.upperBar}>
+        <button onClick={handleFetchData} className={styles.button}>
           Fetch New Data
         </button>
-      </div>
-      <div className={styles.switch}>
-        <p>Bar Chart</p><Switch onChange={handleChange} defaultChecked={false}/><p>Pie Chart</p>
+        <div className={styles.switch}>
+          <p>Bar Chart</p><Switch onChange={handleChange} defaultChecked={false}/><p>Pie Chart</p>
+        </div>
       </div>
       <div>
         {isLeft?<BarChart />:<PieChart />}

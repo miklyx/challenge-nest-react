@@ -1,5 +1,6 @@
-import { Resolver, Query } from "@nestjs/graphql";
-import { BeerService } from "src/beers/beer.service";
+import { Resolver, Query } from '@nestjs/graphql';
+import { BeerService } from 'src/beers/beer.service';
+import { Beer } from './beer.interfaces';
 
 @Resolver('Beer')
 export class BeerResolver {
@@ -8,13 +9,13 @@ export class BeerResolver {
   ) {}
 
   @Query()
-  randomNumericData(){
+  randomNumericData(): number[]{
     const data = this.beerService.getRandomNumericData();
     return data;
   }
 
   @Query()
-  beers(){
-    return this.beerService.getAllBeers()
+  beers(): Promise<Beer[]>{
+    return this.beerService.getAllBeers();
   }
 }
