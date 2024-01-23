@@ -1,62 +1,50 @@
 import React, { useEffect, useState } from "react";
 import { useQuery, gql } from "@apollo/client";
 import { Bar } from "@nivo/bar";
+import { constants } from "buffer";
 
-const AbvQuery = gql`
-  query AbvQuery {
+const BeersQuery = gql`
+  query BeersQuery {
+    randomNumericData {
+      data
+    }
     beers {
       name
-      style
-      position
       price
     }
-  }
-  `;
+  }`;
 
 export const BarChart = () => {
     
-  const { loading, error, data } = useQuery(AbvQuery);
+  const { loading, error, data } = useQuery(BeersQuery);
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
   if (data) {
     const beers = data.beers
-    console.log(beers)
-    /* const modifiedBeers = beers.map(beer => {
-      beer.price = parseInt(beer.price)
-      return beer
-    }); */
-    
-    //console.log(modifiedBeers)
-    /* const options = {
-      y: {
-        axis: {
-          label: "Price",
-          tick: {
-            values: beers.map((beer) => parseInt(beer.price)),
-          },
-        },
-      },
-      x: {
-        axis: {
-          label: "Name",
-          tick: {
-            values: beers.map((beer) => beer.name),
-          },
-        },
-      },
-    }; */
+    const randData = data.randomNumericData
+    const mergedData = beers.reduce((acc, cur) => {
+      acc.push({
+        ...cur,
+        ...randData[acc.length-1],
+      })
+      //console.log(acc)
+      return acc;
+    },[]);
 
+    console.log(mergedData)
     const chart = (
       <Bar 
-        data={beers}
-        keys={["position"]}
+        data={mergedData}
+        keys={["data"]}
         indexBy="name"
-        margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
+        groupMode="stacked"
+        layout="horizontal"
+        margin={{ top: 50, right: 130, bottom: 50, left: 180 }}
         padding={0.4}
         width={600}
-        height={600}
+        height={500}
         valueScale={{ type: "linear" }}
-        colors="#3182CE"
+        colors={{scheme: 'nivo'}}
         animate={true}
         enableLabel={false}
         axisTop={null}
@@ -65,7 +53,7 @@ export const BarChart = () => {
           tickSize: 5,
           tickPadding: 5,
           tickRotation: 0,
-          legend: "position",
+          legend: "",
           legendPosition: "middle",
           legendOffset: -40
         }}
@@ -73,7 +61,7 @@ export const BarChart = () => {
     )
     return (
       <div>
-        <h1>ABV chart</h1>
+        <h1>Beer chart</h1>
         {chart}
       </div>
     );
