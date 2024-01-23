@@ -3,7 +3,8 @@
 import styles from "./page.module.css";
 import { ApolloProvider } from '@apollo/client';
 import client from './apolloClient'; 
-import { Beer } from "./beer";
+import { Beer } from './beer';
+import { BarChart } from "./BarComponent";
 
 
 export default function Home() {
@@ -15,13 +16,10 @@ export default function Home() {
         </div>
 
         <div className={styles.center}>
-          <p>Graphics</p>
-          <p>The front-end part will be a React application that queries and displays the data returned by the back-end as a graph, e.g. as a line chart, bar chart, etc. Feel free to use any visualization library that you choose, e.g. Nivo. The interface will allow to:
-  query new batch of data from the back-end;
-  switch the type of the graph, e.g. from a line chart to a bar chart.</p>
           <div>
-            <Beer />
+            <BarChart />
           </div>
+
         </div>
 
         <div className={styles.grid}>
