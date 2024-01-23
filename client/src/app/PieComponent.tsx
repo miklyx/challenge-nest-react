@@ -1,17 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { useQuery, gql } from "@apollo/client";
+import React from "react";
+import { useQuery } from "@apollo/client";
 import { Pie } from "@nivo/pie";
-
-const BeersQuery = gql`
-  query BeersQuery {
-    randomNumericData {
-      data
-    }
-    beers {
-      name
-      price
-    }
-  }`;
+import { BeersQuery, mergeData } from "./dataService";
 
 export const PieChart = () => {
     
@@ -19,15 +9,7 @@ export const PieChart = () => {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
   if (data) {
-    const beers = data.beers
-    const randData = data.randomNumericData
-    const mergedData = []
-    for (let i = 0; i < beers.length; i++) {
-      mergedData.push({
-        ...beers[i],
-        ...randData[i],
-      });
-    }
+    const mergedData = mergeData(data);
     const chart = (
       <Pie 
         data={mergedData}
@@ -46,7 +28,6 @@ export const PieChart = () => {
     )
     return (
       <div>
-        <h1>Beer chart</h1>
         {chart}
       </div>
     );

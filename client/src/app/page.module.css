@@ -36,7 +36,8 @@
 
 .description button {
   position: relative;
-  margin: 0;
+  margin-bottom: 3rem;
+  margin-left: 10rem;
   padding: 1rem;
   background-color: rgba(var(--callout-rgb), 0.5);
   border: 1px solid rgba(var(--callout-border-rgb), 0.3);
@@ -241,4 +242,13 @@
 .switch {
   display: flex;
   flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+  margin-bottom: 1rem;
+  margin-left: 10rem;
+  padding: 1rem;
+  background-color: rgba(var(--callout-rgb), 0.5);
+  border: 1px solid rgba(var(--callout-border-rgb), 0.3);
+  border-radius: var(--border-radius);
 }

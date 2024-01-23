@@ -1,14 +1,8 @@
-import React from "react";
-import { useQuery } from "@apollo/client";
+import React, { useEffect, useState } from "react";
 import { Bar } from "@nivo/bar";
-import { BeersQuery, mergeData } from "./dataService";
 
-export const BarChart = () => {
-  const { loading, error, data } = useQuery(BeersQuery);
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
-  if (data) {
-    const mergedData = mergeData(data);
+export const BarTest = (mergedData:any) => {
+  
     const chart = (
       <Bar 
         data={mergedData}
@@ -40,11 +34,10 @@ export const BarChart = () => {
     )
     return (
       <div>
+        <h1>Beer chart</h1>
         {chart}
       </div>
-    );} else {
-      return <p>No beers</p>
-    }
+    );
   }
   
   
